@@ -11094,3 +11094,10 @@ html {
   width: 100%;
   height: 100%;
 }
+
+.unavailable
+{
+  display: none;
+}
+
+html, body {overflow-x: hidden;}
