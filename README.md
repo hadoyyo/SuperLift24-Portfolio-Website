@@ -1,4 +1,4 @@
-# SuperLift - One-Page website for a company that rents lifts, forklifts and cranes
+# SuperLift - One-Page Website
 
 <div align="center">
   <img src="./ss/logo.png"/>
