@@ -34,7 +34,7 @@ Software versions used for development (**compatibility with earlier versions ha
 
 ## Setup Instructions
 
-Just go [www.superlift24.pl][www.superlift24.pl]
+Just go www.superlift24.pl.
 
 OR
 
