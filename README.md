@@ -14,7 +14,7 @@
 
 ## Project Overview
 
-SuperLift is a one-page site showcasing the offerings of a company that rents lifts, forklifts and cranes. **The website is only available in Polish language version!**
+**SuperLift** is a one-page site showcasing the offerings of a company that rents lifts, forklifts and cranes. **The website is only available in Polish language version!**
 
 ## Features
 
