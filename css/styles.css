@@ -11077,18 +11077,18 @@ html {
 }
 
 .highlight {
-  font-weight: bold; /* Make the text bold */
-  color: rgb(61, 152, 238) /* Change the color to red */
+  font-weight: bold;
+  color: rgb(61, 152, 238)
 }
 
 .map-container {
   position: relative;
-  width: 100vw; /* Full width of the viewport */
+  width: 100vw; 
   left: 50%;
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
-  height: 540px; /* Adjust height as needed */
+  height: 540px;
 }
 .map-container iframe {
   width: 100%;
@@ -11098,6 +11098,60 @@ html {
 .unavailable
 {
   display: none;
+}
+
+
+.mobile-tooltip {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(61, 152, 238, 0.95);
+    color: white;
+    padding: 15px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    z-index: 999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    animation: slideUp 0.5s ease-out;
+    text-align: center;
+}
+
+.mobile-tooltip i {
+    font-size: 18px;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+
+        transform: translateY(0);
+    }
+    to {
+
+        transform: translateY(50px);
+    }
+}
+
+.mobile-tooltip.hiding {
+    animation: slideDown 0.5s ease-out forwards;
+}
+
+@media (max-width: 768px) {
+    .mobile-tooltip {
+        display: none;
+    }
 }
 
 html, body {overflow-x: hidden;}

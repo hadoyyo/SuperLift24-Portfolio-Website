@@ -20,7 +20,6 @@ window.addEventListener('DOMContentLoaded', event => {
         } else {
             navbarCollapsible.classList.add('navbar-shrink')
         }
-
     };
 
     // Shrink the navbar 
@@ -51,10 +50,31 @@ window.addEventListener('DOMContentLoaded', event => {
         });
     });
 
-});
+    // Custom scroll spy to handle active nav links
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
 
-document.addEventListener('DOMContentLoaded', function() {
-    var navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+    window.addEventListener('scroll', function() {
+        let current = '';
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            
+            if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
+        });
+    });
+
+    // Handle click on nav links
     navLinks.forEach(function(link) {
         link.addEventListener('click', function() {
             navLinks.forEach(function(nav) {
@@ -68,3 +88,76 @@ document.addEventListener('DOMContentLoaded', function() {
 function openModal() {
     $('#imageModal').modal('show');
 }
+
+
+document.addEventListener('DOMContentLoaded', function() {
+        const mobileTooltip = document.getElementById('mobileTooltip');
+        const offerSection = document.getElementById('offer');
+        const contactSection = document.getElementById('about');
+        let tooltipVisible = false;
+        
+        function isElementInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            return (
+                rect.top <= (window.innerHeight * 0.8) &&
+                rect.bottom >= (window.innerHeight * 0.2)
+            );
+        }
+        
+        function showTooltip() {
+            if (!tooltipVisible && window.innerWidth <= 768) {
+                mobileTooltip.style.display = 'flex';
+                mobileTooltip.classList.remove('hiding');
+                tooltipVisible = true;
+            }
+        }
+        
+        function hideTooltip() {
+            if (tooltipVisible) {
+                mobileTooltip.classList.add('hiding');
+                setTimeout(() => {
+                    mobileTooltip.style.display = 'none';
+                    tooltipVisible = false;
+                }, 500);
+            }
+        }
+        
+        function handleScroll() {
+            if (window.innerWidth > 768) {
+                hideTooltip();
+                return;
+            }
+            
+            if (isElementInViewport(contactSection)) {
+                hideTooltip();
+            } else if (isElementInViewport(offerSection)) {
+                showTooltip();
+            } else {
+                hideTooltip();
+            }
+        }
+        
+        function handleResize() {
+
+            if (window.innerWidth > 768) {
+                hideTooltip();
+            } else {
+                handleScroll();
+            }
+        }
+        
+        // Initial check
+        handleScroll();
+        
+        // Listen for scroll events
+        window.addEventListener('scroll', handleScroll);
+        
+        // Listen for resize events
+        window.addEventListener('resize', handleResize);
+        
+        // Hide when clicking any portfolio item
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        portfolioItems.forEach(item => {
+            item.addEventListener('click', hideTooltip);
+        });
+    });
